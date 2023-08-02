@@ -11,7 +11,6 @@ body {
 .foods-container {
   width: 80vw;
   background-image: url('1690913062763.jpg');
-  background-color: rgba(3, 252, 231, 0.5);
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 50vw;
@@ -22,4 +21,20 @@ body {
   width: 14rem;
   height: 13rem;
   border-radius: 6px;
+}
+
+.food-img {
+  width: 14rem;
+  height: 12rem;
+  border-radius: 6px;
+}
+
+.food-box {
+  display: flex;
+  background-color: rgba(3, 252, 231, 0.5);
+  margin: 1rem;
+  height: 14rem;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 -5px 3px -3px #000, 0 5px 3px -3px #000;
 }

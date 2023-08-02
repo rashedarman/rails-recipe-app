@@ -14,7 +14,7 @@ class FoodsController < ApplicationController
 
   def create
     @food = Food.new(food_params.merge(user: current_user))
-  
+
     if @food.save
       flash[:success] = 'Food added successfully'
       redirect_to root_path

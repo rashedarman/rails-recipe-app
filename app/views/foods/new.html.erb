@@ -1,0 +1,23 @@
+<div>
+  <%= form_with model: @food, url: foods_path, local: true do |f| %>
+    <h2 class="comments-header">Add New Food</h2>
+    <div class="form-group">
+      <%= f.label :name, style: "display: block" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :measurement_unit, style: "display: block" %>
+      <%= f.text_field :measurement_unit, placeholder: 'Ex: grams, liters..' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :price, style: "display: block" %>
+      <%= f.number_field :price, placeholder: 'In USD' %>
+    </div>
+    <div>
+      <%= f.label :quantity, style: "display: block" %>
+      <%= f.number_field :quantity, placeholder: 'Quantity..' %>
+    </div>
+    <%= f.submit "Add Food", class: "btn btn-primary" %>
+  <% end %>
+  <%= link_to 'Home', foods_path, class: 'btn-primary' %>
+</div>

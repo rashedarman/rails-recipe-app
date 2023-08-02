@@ -1,0 +1,29 @@
+<div class="foods-container">
+  <div>
+    <% if @user %>
+      <h1>Hello <%= @user.name %></h1>
+    <% else %>
+      <h1>Hello Guest</h1>
+    <% end %>
+    <%= link_to 'Add Food', new_food_path, class: 'add-link' %>
+  </div>
+  <% if @foods.empty? %>
+    <p class="no-foods"><%= image_tag("1690915255103.jpg", id: '1690915255103-img', class: 'empty-img') %>Your Food List Is Currently Empty.</p>
+  <% else %>
+    <% @foods.each do |food| %>
+    <div class="food-box">
+      <div>
+        <%= image_tag("1690913062800.jpg", id: '1690913062763-img',  class: 'food-img') %>
+      </div>
+      <h2>Name: <%= food.name %></h2>
+      <div>
+        <%= link_to 'View', food_path(food), class: 'post-link' %>
+        <%= link_to 'Edit', edit_food_path(food), class: 'post-link' %>
+        <%= link_to 'Delete', food_path(food), method: :delete, data: { confirm: 'Are you sure you want to delete this food?' }, class: 'post-link' %>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+</div>
+
+

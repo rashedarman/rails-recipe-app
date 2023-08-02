@@ -1,16 +1,17 @@
+@import "bootstrap";
+
 body {
-  margin: 0;
-  padding: 4rem;
   background-color: #1b2223;
   color: #f4fefd;
   display: grid;
   place-items: center;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .foods-container {
   width: 80vw;
-  background-image: url('1690913062763.jpg');
+  background-image: url("1690913062763.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 50vw;

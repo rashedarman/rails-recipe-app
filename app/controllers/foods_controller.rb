@@ -12,6 +12,8 @@ class FoodsController < ApplicationController
     @food = Food.new
   end
 
+  def edit; end
+
   def create
     @food = Food.new(food_params.merge(user: current_user))
 
@@ -22,6 +24,23 @@ class FoodsController < ApplicationController
       flash.now[:error] = 'Failed to add food'
       render :new
     end
+  end
+
+  def update
+    if @food.update(food_params)
+      flash[:success] = "Successfully updated #{@food}"
+      redirect_to user_food_path(@food.user, @food)
+    else
+      flash.now[:error] = "#{@food} failed to be saved"
+      render :edit
+    end
+  end
+
+  def destroy
+    @food = Food.find(params[:id])
+    @food.destroy
+    flash[:success] = 'Food successfully deleted'
+    redirect_to root_path
   end
 
   private

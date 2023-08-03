@@ -43,6 +43,14 @@ class FoodsController < ApplicationController
     redirect_to root_path
   end
 
+  def general_shopping_list
+    @all_foods = Food.all
+    @foods = {}
+    @food_count = 0
+    @total_cost = 0
+
+  end
+
   private
 
   def food_params

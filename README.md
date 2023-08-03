@@ -130,6 +130,13 @@ To run tests, run the following command:
 - LinkedIn: [Rashed Arman](https://linkedin.com/in/rashedarman)
 - Twitter: [@rashedarman21](https://twitter.com/rashedarman21)
 
+  👤 **Tebe Tisloh**
+
+- GitHub: [@Booze33](https://github.com/Booze33)
+- Twitter: [@twitterhandle](https://twitter.com/Tebe95645832)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/tebe-tisloh-847956225)
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->

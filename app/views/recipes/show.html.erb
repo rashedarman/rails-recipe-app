@@ -1,11 +1,15 @@
-<div>
-  <ul>
-    <li>Recipe: <%=@recipe.name%></li>
-    <li>Preparation time:<%=@recipe.preparation_time%></li>
-    <li>Cooking time: <%=@recipe.cooking_time%></li>
-    <li>Public <%= check_box_tag "public", "1", @recipe.public %></li>
-    <li>Steps go here: <%=@recipe.description%></li>
-  </ul>
-
-  <%= link_to "Go back", recipes_path %>
+<div class="container-2">
+  <div class="grid">
+    <div class="1st-div">
+      <p><span class="details">Recipe: </span><%=@recipe.name%></p>
+      <p><span class="details">Preparation time: </span><%=@recipe.preparation_time%>hrs</p>
+      <p><span class="details">Cooking time: </span><%=@recipe.cooking_time%>hrs</p>
+      <p><span class="details">Public </span><%= check_box_tag "public", "1", @recipe.public %></p>
+      <p><span class="details">Steps go here: </span><%=@recipe.description%></p>
+      <%= link_to "Go back", recipes_path, class: 'btn-back' %>
+    </div>
+    <div class="second">
+      <%= image_tag("1690913062779.jpg", id: '1690915255103-img', class: 'grid-img') %>
+    </div>
+  </div>
 </div>

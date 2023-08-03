@@ -1,23 +1,29 @@
 <div class="container my-5">
-  <div>
+  <div class="head-div">
     <% if current_user %>
-      <h1>Hello <%= current_user.name %></h1>
+      <h1 class="name">Hello <%= current_user.name %></h1>
     <% else %>
-      <h1>Hello Guest</h1>
+      <h1 class="name">Hello Guest</h1>
     <% end %>
-    <%= link_to 'Add Recipe', new_recipe_path, class: 'add-link' %>
+    <%= link_to 'Add Recipe', new_recipe_path, class: 'add-link add-link-2' %>
   </div>
   <% if @recipes.empty? %>
     <p>Your Recipe List Is Currently Empty.</p>
   <% else %>
     <% @recipes.each do |recipe| %>
-    <div>
-      <h2>Name: <%= recipe.name %></h2>
+    <div class="food-box">
       <div>
-        <%= link_to 'View', recipe_path(recipe) %>
-        <% if user_signed_in? && current_user == recipe.user %>
-          <%= button_to 'Delete', recipe, method: :delete, data: { turbot_confirm: 'Delete this recipe?' } %>
-        <% end %>
+        <h2>Name: <span class="post-link"><%= recipe.name %></span></h2>
+        <h2>Preparation time: <span class="post-link"><%= recipe.preparation_time %>hrs</span><h2>
+        <div>
+          <%= link_to 'View', recipe_path(recipe), class: "view-link" %>
+          <% if user_signed_in? && current_user == recipe.user %>
+            <%= button_to 'Delete', recipe, method: :delete, data: { turbot_confirm: 'Delete this recipe?' }, class: 'btn-back' %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <%= image_tag("1690913062789.jpg", id: '1690913062763-img',  class: 'food-img-2') %>
       </div>
     </div>
     <% end %>

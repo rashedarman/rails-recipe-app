@@ -1,0 +1,25 @@
+<div class="container my-5">
+  <div>
+    <% if current_user %>
+      <h1>Hello <%= current_user.name %></h1>
+    <% else %>
+      <h1>Hello Guest</h1>
+    <% end %>
+    <%= link_to 'Add Recipe', new_recipe_path, class: 'add-link' %>
+  </div>
+  <% if @recipes.empty? %>
+    <p>Your Recipe List Is Currently Empty.</p>
+  <% else %>
+    <% @recipes.each do |recipe| %>
+    <div>
+      <h2>Name: <%= recipe.name %></h2>
+      <div>
+        <%= link_to 'View', recipe_path(recipe) %>
+        <% if user_signed_in? && current_user == recipe.user %>
+          <%= button_to 'Delete', recipe, method: :delete, data: { turbot_confirm: 'Delete this recipe?' } %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+</div>

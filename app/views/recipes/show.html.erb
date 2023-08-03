@@ -1,0 +1,11 @@
+<div>
+  <ul>
+    <li>Recipe: <%=@recipe.name%></li>
+    <li>Preparation time:<%=@recipe.preparation_time%></li>
+    <li>Cooking time: <%=@recipe.cooking_time%></li>
+    <li>Public <%= check_box_tag "public", "1", @recipe.public %></li>
+    <li>Steps go here: <%=@recipe.description%></li>
+  </ul>
+
+  <%= link_to "Go back", recipes_path %>
+</div>

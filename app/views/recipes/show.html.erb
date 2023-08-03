@@ -4,7 +4,11 @@
       <p><span class="details">Recipe: </span><%=@recipe.name%></p>
       <p><span class="details">Preparation time: </span><%=@recipe.preparation_time%>hrs</p>
       <p><span class="details">Cooking time: </span><%=@recipe.cooking_time%>hrs</p>
-      <p><span class="details">Public </span><%= check_box_tag "public", "1", @recipe.public %></p>
+      <p>
+  <span class="details">Public </span>
+  <%= check_box_tag "public", "1", @recipe.public, class: 'public-toggle', data: { recipe_id: @recipe.id } %>
+</p>
+
       <p><span class="details">Steps go here: </span><%=@recipe.description%></p>
       <%= link_to "Go back", recipes_path, class: 'btn-back' %>
     </div>
@@ -13,3 +17,34 @@
     </div>
   </div>
 </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const publicToggleCheckboxes = document.querySelectorAll('.public-toggle');
+
+  publicToggleCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      const recipeId = this.dataset.recipe_id;
+      const newValue = this.checked;
+
+      // Make an AJAX request to update the public attribute
+      fetch(`/recipes/${recipeId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({ recipe: { public: newValue } })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Update the checkbox's checked state
+          this.checked = data.recipe.public;
+        }
+      });
+    });
+  });
+});
+</script>

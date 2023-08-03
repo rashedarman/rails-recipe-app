@@ -48,7 +48,6 @@ class FoodsController < ApplicationController
     @foods = {}
     @food_count = 0
     @total_cost = 0
-
   end
 
   private

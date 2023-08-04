@@ -1,17 +1,17 @@
 class RecipeFoodsController < ApplicationController
-    def new
-        @recipes = current_user.recipes
-        @recipe = @recipes.find(params[:recipe_id]) if params[:recipe_id].present?
-        @recipe_food = RecipeFood.new
-        @all_foods = Food.all
-        @foods = @all_foods.map { |food| [food.name, food.id] }
-      end
+  def new
+    @recipes = current_user.recipes
+    @recipe = @recipes.find(params[:recipe_id]) if params[:recipe_id].present?
+    @recipe_food = RecipeFood.new
+    @all_foods = Food.all
+    @foods = @all_foods.map { |food| [food.name, food.id] }
+  end
 
   def create
     @recipe = Recipe.find(params[:recipe_id])
     @recipe_food = @recipe.recipe_foods.new(recipe_food_params)
 
-     if @recipe_food.save
+    if @recipe_food.save
       flash[:success] = 'Recipe food added successfully'
       redirect_to recipe_path(@recipe)
     else

@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="head-div">
+    <% if current_user %>
+      <h1 class="name">Hello <%= current_user.name %></h1>
+    <% else %>
+      <h1 class="name">Hello Guest</h1>
+    <% end %>
+  </div>
+  <div class="list-condition">
+    <% if @foods.empty? %>
+      <%= image_tag("empty-box.jpg", id: '1690915255103-img', class: 'empty-img') %>
+        <p class="no-foods">Your Shopping Box Is Currently Empty.</p>
+    <% else %>
+      <div id="foods">
+      <table class="table">
+          <tr>
+            <th class="table-name">Food</th>
+            <th class="table-name">Quantity</th>
+            <th class="table-name">Measurement Unit</th>
+            <th class="table-name">Price</th>
+          </tr>
+          <% @all_foods.each do |food| %>
+            <tr>
+              <% if @foods[food.name] %>
+                <td class="table-body"><%= food.name %></td>
+                <td class="table-body"><%= @foods[food.name] %></td>
+                <td class="table-body"><%= food.measurement_unit %></td>
+                <td class="table-body">$ <%= (@foods[food.name] * food.price) / food.quantity %></td>
+              <% end %>
+          </tr>
+        <% end %>
+      </table>
+      </div>
+    <% end %>
+  </div>
+</div>

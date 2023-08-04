@@ -1,6 +1,5 @@
 class FoodsController < ApplicationController
   def index
-
     @foods = Food.all
   end
 
@@ -12,7 +11,9 @@ class FoodsController < ApplicationController
     @food = Food.new
   end
 
-  def edit; end
+  def edit
+    @food = Food.find(params[:id])
+  end
 
   def create
     @food = Food.new(food_params.merge(user: current_user))
@@ -27,6 +28,8 @@ class FoodsController < ApplicationController
   end
 
   def update
+    @food = Food.find(params[:id])
+
     if @food.update(food_params)
       flash[:success] = "Successfully updated #{@food}"
       redirect_to user_food_path(@food.user, @food)
@@ -49,8 +52,9 @@ class FoodsController < ApplicationController
     @foods = {}
     @food_count = 0
     @total_cost = 0
-    @recipes.each do |r|
-      r.recipe_foods.each do |rf|
+
+    @recipes.each do |recipe|
+      recipe.recipe_foods.each do |rf|
         name = rf.food.name
         if @foods[name]
           @foods[name] += rf.quantity
@@ -64,7 +68,12 @@ class FoodsController < ApplicationController
   end
 
   def recipe_shopping_list
-    @recipe = Recipe.includes(recipe_foods: %i[food]).find_by(id: params[:recipe_id])
+    @recipe = Recipe.includes(recipe_foods: [:food]).find_by(id: params[:recipe_id])
+    # @foods = {}
+    # @recipe.recipe_foods.each do |rf|
+    #   name = rf.food.name
+    #   @foods[name] = rf.quantity
+    # end
   end
 
   private

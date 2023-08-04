@@ -15,7 +15,7 @@
       <div>
         <h2>Name: <span class="post-link"><%= recipe.name %></span></h2>
         <h2>Preparation time: <span class="post-link"><%= recipe.preparation_time %>hrs</span><h2>
-        <div>
+        <div class="Link-2">
           <%= link_to 'View', recipe_path(recipe), class: "view-link" %>
           <% if user_signed_in? && current_user == recipe.user %>
             <%= button_to 'Delete', recipe, method: :delete, data: { turbot_confirm: 'Delete this recipe?' }, class: 'btn-back' %>

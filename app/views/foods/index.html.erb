@@ -1,13 +1,12 @@
-<div class="foods-container">
+<div class="container">
   <div class="head-div">
-    <% if @user %>
-      <h1 class="name">Hello <%= @user.name %></h1>
+    <% if current_user %>
+      <h1 class="name">Hello <%= current_user.name %></h1>
     <% else %>
       <h1 class="name">Hello Guest</h1>
     <% end %>
-    <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'sign-out' %>
+    <%= link_to 'Add Food', new_food_path, class: 'add-link add-link-2' %>
   </div>
-  <%= link_to 'Add Food', new_food_path, class: 'add-link' %>
   <div class="list-condition">
     <% if @foods.empty? %>
       <%= image_tag("empty-box.jpg", id: '1690915255103-img', class: 'empty-img') %>
@@ -25,10 +24,13 @@
           <h3>Quantity: <span class="post-link"><%= food.quantity %></span></h3>
         </div>
         <div class="links">
-          <%= button_to 'Delete', food_path(food), method: :delete, data: { confirm: 'Are you sure you want to delete this food?' }, class: 'btn-back' %>
+          <% if user_signed_in? && current_user == food.user %>
+            <%= button_to 'Delete', food_path(food), method: :delete, data: { confirm: 'Are you sure you want to delete this food?' }, class: 'btn-back' %>
+          <% end %>
         </div>
       </div>
       <% end %>
     <% end %>
   </div>
+  <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'sign-out' %>
 </div>

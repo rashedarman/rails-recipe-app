@@ -42,9 +42,20 @@ body {
   place-items: center;
 }
 
-.foods-container {
+.container {
   width: 80vw;
   min-height: 50vw;
+  border-radius: 10px;
+  border-right: #000 1px solid;
+  border-left: #000 1px solid;
+  padding: 1rem;
+  box-shadow: 0 -5px 3px -3px #000, 0 5px 3px -3px #000;
+  place-items: center;
+}
+
+.container-2 {
+  height: 25rem;
+  width: 80vw;
   border-radius: 10px;
   border-right: #000 1px solid;
   border-left: #000 1px solid;
@@ -72,6 +83,20 @@ body {
   border-radius: 20px;
 }
 
+.food-img-2 {
+  width: 13rem;
+  height: 12rem;
+  border-radius: 50px;
+  margin-left: 100%;
+}
+
+.grid-img {
+  width: 28rem;
+  height: 23rem;
+  border-radius: 20px;
+  box-shadow: 0 -5px 3px -3px #fff, 0 5px 3px -3px #fff;
+}
+
 .food-box {
   display: flex;
   background-color: rgba(3, 252, 231, 0.5);
@@ -82,7 +107,8 @@ body {
   box-shadow: 0 -5px 3px -3px #fff, 0 5px 3px -3px #fff;
 }
 
-.name {
+.name,
+.details {
   color: #0ef6cc;
 }
 
@@ -105,6 +131,22 @@ body {
   font-weight: 900;
   transition: all 0.5s;
   margin: 3rem;
+  text-decoration: none;
+}
+
+.add-link-2 {
+  margin-top: 0;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.view-link {
+  color: #3a4f50;
+  font-weight: 900;
   text-decoration: none;
 }
 
@@ -157,4 +199,23 @@ body {
 
 .links {
   margin-top: 9.5rem;
+}
+
+.table {
+  background-color: #3a4f50;
+  width: 70vw;
+}
+
+.table-name {
+  text-align: center;
+  color: #f4fefd;
+}
+
+.table-body {
+  text-align: center;
+  color: #0ef6cc;
+}
+
+.Link-2 {
+  display: flex;
 }

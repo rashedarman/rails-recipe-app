@@ -1,6 +1,6 @@
 class FoodsController < ApplicationController
   def index
-    @foods = Food.all
+    @foods = Food.includes(:user).all
   end
 
   def show
@@ -69,11 +69,6 @@ class FoodsController < ApplicationController
 
   def recipe_shopping_list
     @recipe = Recipe.includes(recipe_foods: [:food]).find_by(id: params[:recipe_id])
-    # @foods = {}
-    # @recipe.recipe_foods.each do |rf|
-    #   name = rf.food.name
-    #   @foods[name] = rf.quantity
-    # end
   end
 
   private

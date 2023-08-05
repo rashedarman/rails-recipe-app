@@ -11,69 +11,26 @@ class FoodsController < ApplicationController
     @food = Food.new
   end
 
-  def edit
-    @food = Food.find(params[:id])
-  end
-
   def create
     @food = Food.new(food_params.merge(user: current_user))
-
-    if @food.save
-      flash[:success] = 'Food added successfully'
-      redirect_to root_path
-    else
-      flash.now[:error] = 'Failed to add food'
-      render :new
-    end
-  end
-
-  def update
-    @food = Food.find(params[:id])
-
-    if @food.update(food_params)
-      flash[:success] = "Successfully updated #{@food}"
-      redirect_to user_food_path(@food.user, @food)
-    else
-      flash.now[:error] = "#{@food} failed to be saved"
-      render :edit
+    respond_to do |f|
+      if @food.save
+        f.html { redirect_to foods_path, notice: 'Food added' }
+      else
+        f.html { render :new, notice: 'Failed to add food' }
+      end
     end
   end
 
   def destroy
-    @food = Food.find(params[:id])
-    @food.destroy
-    flash[:success] = 'Food successfully deleted'
-    redirect_to root_path
-  end
-
-  def general_shopping_list
-    @all_foods = Food.all
-    @recipes = Recipe.includes(recipe_foods: [:food]).where(user: current_user)
-    @foods = {}
-    @food_count = 0
-    @total_cost = 0
-
-    @recipes.each do |recipe|
-      recipe.recipe_foods.each do |rf|
-        name = rf.food.name
-        if @foods[name]
-          @foods[name] += rf.quantity
-        else
-          @food_count += 1
-          @foods[name] = rf.quantity
-        end
-      end
-      @total_cost += recipe.total_cost_calculator
+    @food = Food.find(params[:id]).destroy
+    respond_to do |f|
+      f.html { redirect_to foods_path, notice: 'Food deleted' }
     end
   end
 
-  def recipe_shopping_list
-    @recipe = Recipe.includes(recipe_foods: [:food]).find_by(id: params[:recipe_id])
-    # @foods = {}
-    # @recipe.recipe_foods.each do |rf|
-    #   name = rf.food.name
-    #   @foods[name] = rf.quantity
-    # end
+  def my_foods
+    @foods = current_user.foods.includes(:user)
   end
 
   private

@@ -1,23 +1,29 @@
-<div>
-  <%= form_with model: @food, url: foods_path, local: true do |f| %>
-    <h2 class="comments-header">Add New Food</h2>
-    <div class="form-group">
-      <%= f.label :name, style: "display: block", class: "label" %>
-      <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h2 class="display-6 text-center">Add Food</h2>
+      <%= form_with model: @food, url: foods_path, local: true, html: { class: "row g-3 my-3" } do |form| %>
+        <div class="col-12">
+          <%= form.text_field :name, class: "form-control", placeholder: "Food name", required: true %>
+        </div>
+
+        <div class="col-lg-6">
+          <%= form.number_field :price, class: "form-control", placeholder: "Price ($)", required: true %>
+        </div>
+
+        <div class="col-lg-6">
+          <%= form.number_field :quantity, class: "form-control", placeholder: "Quantity", required: true %>
+        </div>
+
+        <div class="col-12">
+          <%= form.label :measurement_unit, class: "form-label" %>
+          <%= form.select :measurement_unit, options_for_select(['pcs', 'lbs', 'kgs'], selected: 'pcs'), class: "form-select", required: true %>
+        </div>
+
+        <div class="col-12">
+          <%= form.submit "Add Food", class: "btn btn-primary", style: "width: 100%" %>
+        </div>
+      <% end %>
     </div>
-    <div class="form-group">
-      <%= f.label :measurement_unit, style: "display: block", class: "label" %>
-      <%= f.text_field :measurement_unit, placeholder: 'Ex: grams, liters..' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :price, style: "display: block", class: "label" %>
-      <%= f.number_field :price, placeholder: 'In USD' %>
-    </div>
-    <div>
-      <%= f.label :quantity, style: "display: block", class: "label" %>
-      <%= f.number_field :quantity, placeholder: 'Quantity..' %>
-    </div>
-    <%= f.submit "Add Food", class: "btn btn-primary" %>
-  <% end %>
-  <%= link_to 'Back', foods_path, class: 'btn-back' %>
+  </div>
 </div>

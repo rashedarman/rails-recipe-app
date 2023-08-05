@@ -34,7 +34,7 @@ class RecipesController < ApplicationController
   end
 
   def public_recipes
-    @recipes = Recipe.includes(:user).where(public: true)
+    @recipes = Recipe.includes(:user).where(public: true).order(created_at: :desc)
 
     @shopping_lists = {}
     @recipes.each do |recipe|

@@ -1,0 +1,41 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand text-uppercase" href="/">Recipe App</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ms-auto">
+          <%= link_to 'Public Recipes', public_recipes_path, class: "nav-link" %>
+          <%= link_to 'My Foods', foods_path, class: "nav-link" %>
+          <%= link_to 'My Recipes', recipes_path, class: "nav-link" %>
+        </div>
+
+        <span class="mx-2">|</span>
+
+        <div class="d-flex justify-content-center align-items-center gap-3">
+          <% if user_signed_in? %>
+            <p class="navbar-text ps-2 m-0">
+              Signed in as <strong><%= current_user.name %></strong>
+            </p>
+            <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-outline-danger' %>
+          <% else %>
+            <div class="ps-2 d-flex gap-2">
+              <%= link_to 'Sign in', new_user_session_path, class: 'btn btn-sm btn-info' %>
+              <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-sm btn-outline-info' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

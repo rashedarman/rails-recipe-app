@@ -1,20 +1,20 @@
-<div class="container">
-  <h1>Generate Shopping List</h1>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h1 class="display-6 text-center mb-5">Add ingredient for recipe</h1>
 
-  <%= form_with model: @recipe_food, url: recipe_recipe_foods_path(recipe_id: @recipe), method: :post do |form| %>
+      <%= form_for [@recipe, @recipe_food], html: { class: 'col-lg-8 mx-auto' } do |f| %>
+        <div class="mb-3">
+          <%= f.label :food_id, "Ingredient" %>
+          <%= f.collection_select :food_id, Food.all, :id, :name, prompt: "Select ingredient", class: "form-select" %>
+        </div>
 
-    <div class="field">
-      <%= form.label :food_name, style: "display: block" %>
-      <%= form.collection_select :food_id, @foods, :second, :first, prompt: true, class: "form-control" %>
-    </div>
-    <div class="field">
-      <%= form.label :quantity, style: "display: block", class: "form-label" %>
-      <%= form.number_field :quantity, class: "form-control" %>
-    </div>
+        <div class="mb-3">
+          <%= f.number_field :quantity, placeholder: "Quantity", class: "form-control" %>
+        </div>
 
-    <div class="actions">
-      <%= form.submit "Add To Cart", class: "btn btn-primary" %>
+        <%= f.submit "Add ingredient to recipe", class: "btn btn-primary" %>
+      <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
-

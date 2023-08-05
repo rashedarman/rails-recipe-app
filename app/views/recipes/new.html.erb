@@ -1,35 +1,38 @@
-<div>
-  <h1> New Recipe</h1>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h2 class="display-6 text-center">New Recipe</h2>
 
-  <%= form_with(model: @recipe, url: recipes_path, local: true) do |form| %>
-    <div class="field">
-      <%= form.label :name, style: "display: block", class: "label" %>
-      <%= form.text_field :name %>
-    </div>
+      <%= form_with model: @recipe, url: recipes_path, local: true, html: { class: "row g-3" } do |form| %>
+        <div class="col-12">
+          <%= form.label :name, class: "form-label" %>
+          <%= form.text_field :name, class: "form-control", required: true %>
+        </div>
 
-    <div class="field">
-      <%= form.label :preparation_time, style: "display: block", class: "label" %>
-      <%= form.number_field :preparation_time, min: 0 %>
-    </div>
+        <div class="col-lg-6">
+          <%= form.label :preparation_time, "Preparation time (min.)", class: "form-label" %>
+          <%= form.number_field :preparation_time, min: 0, class: "form-control", required: true %>
+        </div>
 
-    <div class="field">
-      <%= form.label :cooking_time, style: "display: block", class: "label" %>
-      <%= form.number_field :cooking_time, min: 0 %>
-    </div>
+        <div class="col-lg-6">
+          <%= form.label :cooking_time, "Cooking time (min.)", class: "form-label" %>
+          <%= form.number_field :cooking_time, min: 0, class: "form-control", required: true %>
+        </div>
 
-    <div class="field">
-      <%= form.label :description, style: "display: block", class: "label" %>
-      <%= form.text_area :description %>
-    </div>
+        <div class="col-12">
+          <%= form.label :description, "Steps go here:", class: "form-label" %>
+          <%= form.text_area :description, class: "form-control", required: true %>
+        </div>
 
-    <div class="field">
-      <%= form.label :public, style: "display: block", class: "label" %>
-      <%= form.check_box :public %>
-    </div>
+        <div class="col-12">
+          <%= form.label :public, class: "form-check-label" %>
+          <%= form.check_box :public, class: "form-check-input" %>
+        </div>
 
-    <div>
-    <%= form.submit "Create Recipe", class: "btn btn-primary"%>
+        <div class="col-12">
+          <%= form.submit "Create Recipe", class: "btn btn-primary", style: "width: 100%" %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-  <%= link_to "Back", recipes_path, class: 'btn-back' %>
+  </div>
 </div>

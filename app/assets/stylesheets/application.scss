@@ -1,0 +1,12 @@
+@import "bootstrap";
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header,
+footer {
+  background-color: #34495e;
+}

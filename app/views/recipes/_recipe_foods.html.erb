@@ -1,0 +1,25 @@
+<table class="table table-dark table-striped table-bordered table-hover align-middle">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipe.recipe_foods.each do |recipe_food| %>
+      <tr>
+        <td><%= recipe_food.food.name %></td>
+        <td><%= recipe_food.food.quantity.ceil %></td>
+        <td><%= number_to_currency(recipe_food.food.price) %></td>
+        <td>
+          <%= link_to "REMOVE", recipe_recipe_food_path(@recipe, recipe_food),
+            data: { turbo_method: :delete, turbo_confirm: 'Delete this ingredient?' },
+            class: "link-danger text-decoration-none"
+          %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
